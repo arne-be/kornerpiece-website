@@ -29,7 +29,7 @@ const NavBar = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.4 }
     );
 
     navLinks.forEach((navLink) => {
@@ -79,7 +79,7 @@ const NavBar = () => {
           <div className={`${toggle ? "flex" : "hidden"} items-center justify-center p-6 bg-accent-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
             <ul className="list-none flex flex-col justify-center items-center">
               {navLinks.map((nav, index) => (
-                <li key={nav.id} className={`font-poppins font-normal cursor-pointer text-[18px] ${index == navLinks.length-1 ? `mb-0` : `mb-4`} text-neutral`}>
+                <li key={nav.id} className={`font-poppins font-normal cursor-pointer text-[18px] ${index == navLinks.length-1 ? `mb-0` : `mb-4`} ${selectedNav === nav.id ? 'text-secondary' : 'text-white'} hover:text-accent`}>
                   <a href={`#${nav.id}`}>{nav.title}</a>  
                 </li>
               ))}
