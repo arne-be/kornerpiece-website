@@ -26,19 +26,19 @@ const Contact = () => {
       <div ref={refIcons} className={`flex flex-row md:items-start md:justify-start items-center justify-center w-full
         ${isIconsVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'}
       `}>
-        <a href="mailto:arne.berresheim@gmail.com" className="px-3">
+        <a href="mailto:arne.berresheim@gmail.com" className="px-3" target="_blank" rel="noopener noreferrer">
           <img src={email} alt="email" className={`h-[40px] w-auto opacity-65 hover:opacity-100`} />
         </a>
 
-        <a href="https://www.linkedin.com/in/arne-berresheim/" className="px-3">
+        <a href="https://www.linkedin.com/in/arne-berresheim/" className="px-3" target="_blank" rel="noopener noreferrer">
           <img src={linkedin} alt="linkedin" className={`w-[40px] h-auto opacity-65 hover:opacity-100`} />
         </a>
 
-        <a href="https://github.com/arne-be" className="px-3">
+        <a href="https://github.com/arne-be" className="px-3" target="_blank" rel="noopener noreferrer">
           <img src={github} alt="github" className={`w-[40px] h-auto opacity-65 hover:opacity-100`} />
         </a>
 
-        <a href="https://twitter.com/Arnebrshm" className="px-3">
+        <a href="https://twitter.com/Arnebrshm" className="px-3" target="_blank" rel="noopener noreferrer">
           <img src={twitter} alt="twitter" className={`w-[40px] h-auto opacity-65 hover:opacity-100`} />
         </a>
       </div>

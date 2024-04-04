@@ -27,14 +27,9 @@ const Footer = () => {
         </div>
 
         <div className={`flex flex-col items-end justify-center w-full`}>
-          <a href={"/Users/arne/Documents/kornerpiece/kornerpiece-website/src/Pages/imprint.html"}>
+          <a href="/imprint.html">
             <p className={`font-poppins font-normal ss:text-[14px] text-[10px] leading-[23.8px]`}>
               Imprint
-            </p>
-          </a>
-          <a href={"/Pages/PrivacyPolicy"}>
-            <p className={`font-poppins font-normal ss:text-[14px] text-[10px] leading-[23.8px]`}>
-              Privacy Policy
             </p>
           </a>
         </div>

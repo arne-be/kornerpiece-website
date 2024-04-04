@@ -45,7 +45,7 @@ export const projects = [
     image: kornerpieceImage,
     title: "kornerpiece",
     content:
-      "Created own Brand Identity and design in Figma. Built using React, TailwindCSS, and Vite.",
+      "Created own Brand Identity and design in Figma. Built using Typescript, React, TailwindCSS, and Vite.",
     button1: "Figma",
     button1Link: "https://www.figma.com/file/eRm61GfmVomxcfsajx9vPZ/CornerPiece?type=design&node-id=0%3A1&mode=design&t=zybEupXQtzkPrkE7-1",
     button2: "GitHub",
