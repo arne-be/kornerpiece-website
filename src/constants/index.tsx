@@ -49,7 +49,7 @@ export const projects = [
     button1: "Figma",
     button1Link: "https://www.figma.com/file/eRm61GfmVomxcfsajx9vPZ/CornerPiece?type=design&node-id=0%3A1&mode=design&t=zybEupXQtzkPrkE7-1",
     button2: "GitHub",
-    button2Link: "",
+    button2Link: "https://github.com/arne-be/kornerpiece-website",
   },
   {
     id: "project-4",
