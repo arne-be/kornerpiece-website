@@ -19,10 +19,10 @@ const Arne = () => {
       className={`flex flex-col items-center  ${styles.paddingX} ${styles.flexStart} xl:px-0 sm:px-16 px-6 `} >
       
       <div 
-        className={`flex md:flex-row flex-col w-full bg-center bg-no-repeat`} 
+        className={`flex md:flex-row flex-col w-full bg-center bg-no-repeat md:py-0 py-12`} 
         style={{backgroundImage: `url(${heroBG})`, backgroundSize: '65% auto'}}>
         
-        <div ref={refText} className={`flex justify-center items-center w-full md:text-left text-center md:py-0 py-6 
+        <div ref={refText} className={`flex justify-center items-center w-full md:text-left text-center md:pb-0 pb-12 
           ${isTextVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}
         >
           <div style={{transform: `translateY(${(sectionStart - scrollPosition) * 0.3}px)`, transition: 'transform 0.01s smooth', zIndex: 0}}>
@@ -35,11 +35,11 @@ const Arne = () => {
             </div>
         </div>
 
-        <div className={`flex justify-center items-center w-full  md:py-0 py-6'`} 
+        <div className={`flex justify-center items-center w-full  md:py-0 py-12'`} 
           style={{transform: `translateY(${(sectionStart - scrollPosition) * 0.3}px)`, transition: 'transform 0.01s smooth', zIndex: 0}}
           >
           <img ref={refImage} src={headshot} alt="headshot" 
-            className={`flex md:h-[50%] md:w-auto w-[50%] 
+            className={`flex md:h-[50%] md:w-auto w-[50%] h-auto
             ${isImageVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}/>
         </div>
 

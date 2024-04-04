@@ -40,7 +40,7 @@ const About = () => {
             className={`font-poppins font-light text-neutral ss:text-[32px] text-[24px] md:w-[80%] w-[100%] ss:leading-[50px] leading-[35px]
             ${isTextOneVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}
           >
-            I am highly driven by intrinsic motivation, taking ownership and adding my personal touch. My curious sense leads me to explore more whether it is countries or skills. I value uniqueness and simplicity in music, photogrpahy or design.
+            I am a highly driven person motivated by taking ownership and having the freedom to add my personal touch. My curiousity always leads me to explore more whether it is countries or skills. I value uniqueness and simplicity in products, music, photography or design.
           </p>
         </div>
 
@@ -55,7 +55,7 @@ const About = () => {
             className={`font-poppins font-light text-neutral ss:text-[26px] text-[24px] md:w-[80%] w-[100%] ss:leading-[50px] leading-[35px]
             ${isTextTwoVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'}`}
           >
-            Kornerpiece is about an approach for problem solving, taking one piece as a starting point and developing on from there. Using each pieces uniqueness to build a complete picture.
+            Kornerpiece is about a problem solving approach, taking one piece as a starting point and developing on from there. Using the properties of each piece to build complete picture.
           </p>
         </div>
 
