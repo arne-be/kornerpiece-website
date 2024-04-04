@@ -1,34 +1,64 @@
-import {useState, useEffect} from 'react'
-import {logo3d, menu, close} from '../assets'
-import { navLinks } from '../constants'
+import { useState, useEffect } from 'react';
+import { logo3d, menu, close } from '../assets';
+import { navLinks } from '../constants';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [selectedNav, setSelectedNav] = useState(`arne`);
+  const [selectedNav, setSelectedNav] = useState('arne');
 
   const checkScroll = () => {
-    /*value changes depending on screen size to start collapse of menu exactly where the text starts*/
     const scrollValue = window.innerWidth >= 1060 ? 80 : 26;
 
-    if(window.scrollY >= scrollValue) {
+    if (window.scrollY >= scrollValue) {
       setScrolled(true);
     } else {
       setScrolled(false);
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
+
+    // Create an intersection observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setSelectedNav(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    navLinks.forEach((navLink) => {
+      const section = document.getElementById(navLink.id);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
     return () => {
       window.removeEventListener('scroll', checkScroll);
-    }
+
+      navLinks.forEach((navLink) => {
+        const section = document.getElementById(navLink.id);
+        if (section) {
+          observer.unobserve(section);
+        }
+      });
+    };
   }, []);
+
+  
 
   return (
     /* transition for navbar modify duration for smoothness/length*/ 
     <nav className={`w-full flex justify-between items-center navbar border-b-[1px] borderw-white transition-padding duration-500 ease-in-out ${scrolled ? 'py-2' : 'py-6'}`}>
-        <img src={logo3d} alt="kornerpiece" className={`relative z-5 h-[48px] p-2 transform transition-all duration-500 ease-in-out ${scrolled ? '' : '-rotate-45'}`}/>
+        <a href="#arne">
+          <img src={logo3d} alt="kornerpiece" className={`relative z-5 h-[48px] p-2 transform transition-all duration-500 ease-in-out ${scrolled ? '' : '-rotate-45'}`}/>
+        </a>
 
         <ul className="list-none sm:flex hidden justify-start items-center flex-1">
           {navLinks.map((nav, index) => (

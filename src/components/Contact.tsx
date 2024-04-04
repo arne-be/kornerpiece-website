@@ -1,9 +1,12 @@
 import {useRef} from 'react'
 import styles from "../style"
 import { linkedin, twitter, github, email } from "../assets"
-import { useOnScreen } from '../hooks'
+import { useOnScreen, useOffsetTop } from '../hooks'
 
 const Contact = () => {
+  const refSection = useRef(null);
+  const sectionStart = useOffsetTop(refSection);
+
   const refText = useRef(null);
   const refIcons = useRef(null);
   const isTextVisible = useOnScreen(refText, "0px");
@@ -13,7 +16,7 @@ const Contact = () => {
 
 
   return (
-    <section id="contact" className={`flex md:flex-row flex-col items-center justify-center sm:pt-16 sm:pb-48 pt-6 pb-24 ${styles.flexStart}`}>
+    <section id="contact" ref={refSection} className={`flex md:flex-row flex-col items-center justify-center sm:pt-16 sm:pb-48 pt-6 pb-24 ${styles.flexStart}`}>
 
       <div ref={refText} className={`flex md:items-end md:justify-end items-center justify-center w-full p-5
         ${isTextVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0'}

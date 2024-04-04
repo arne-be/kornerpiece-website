@@ -1,10 +1,13 @@
-import {useRef, useEffect} from 'react'
+import {useRef, useState, useEffect} from 'react'
 import styles from "../style"
 import { kornerpieceMatched } from "../assets"
 import { useScrollPosition, useOnScreen, useOffsetTop, useHeightElement } from "../hooks";
 
 const About = () => {
   const scrollPosition = useScrollPosition();
+  
+  const refSection = useRef(null);
+  const sectionStart = useOffsetTop(refSection);
 
   const refImage = useRef(null);
   const refImageDiv = useRef(null);
@@ -23,10 +26,27 @@ const About = () => {
   const refTextTwo = useRef(null);
   const isTextTwoVisible = useOnScreen(refTextTwo, "0px");
 
-  console.log('heightText:', heightText, 'heightImageDiv:', heightImageDiv, 'imageDivStart', imageDivStart, 'scrollPosition:', scrollPosition);
+  const [imageTransformation, setImageTransformation] = useState(true);
+
+  const checkWindowWidth = () => {
+    if (window.innerWidth >= 1060) {
+      setImageTransformation(true);
+    } else {
+      setImageTransformation(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', checkWindowWidth);
+
+    return () => {
+      window.removeEventListener('resize', checkWindowWidth);
+    };
+  }, []);
+
 
   return (
-    <section id="about" className={`flex md:flex-row flex-col ${styles.flexStart} ${styles.paddingY}`}>
+    <section id="about" ref={refSection} className={`flex md:flex-row flex-col ${styles.flexStart} ${styles.paddingY}`}>
 
       <div ref={refText} className={`flex flex-col items-center justify-center w-full py-[10%]`}>
         <div className={`flex flex-col items-start w-full pb-[20%]`}>
@@ -63,26 +83,37 @@ const About = () => {
 
       <div ref={refImageDiv} className={`flex flex-col items-center justify-center w-full py-[10%]`}>
         
-        <img 
-          ref={refImage} 
-          src={kornerpieceMatched} 
-          alt="kornerpieceMatched" 
-          className={`w-[70%] h-auto opacity-85`} 
-          style={{
-            transform: `translateY(${
-              scrollPosition > imageDivStart ? 
-                ((imageDivStart + heightText - 0.9*heightImageDiv) > scrollPosition ? 
-                  scrollPosition - imageDivStart //case 1: moving 
-                  : heightText - 0.9*heightImageDiv) //case 2: stop at the end of the text
-                : 0}px) 
-              rotate(-${scrollPosition > imageDivStart ? //one row above -> case 3: beginning
-                ((imageDivStart + heightText - 0.9*heightImageDiv) > scrollPosition ? 
-                  (scrollPosition - imageDivStart) * (90 / (heightText - 0.9*heightImageDiv)) //case 1: moving
-                    : 90)  //case 2: stop at the end of the text
-                : 0}deg)`,  //case 3: beginning
-            transition: 'transform 0.001s smooth'
-          }}
-        />
+
+        {
+        imageTransformation ? 
+          <img 
+            ref={refImage} 
+            src={kornerpieceMatched} 
+            alt="kornerpieceMatched" 
+            className={`w-[70%] h-auto opacity-85`} 
+            style={{
+              transform: `translateY(${
+                scrollPosition > imageDivStart ? 
+                  ((imageDivStart + heightText - 0.9*heightImageDiv) > scrollPosition ? 
+                    scrollPosition - imageDivStart //case 1: moving 
+                    : heightText - 0.9*heightImageDiv) //case 2: stop at the end of the text
+                  : 0}px) 
+                rotate(-${scrollPosition > imageDivStart ? //one row above -> case 3: beginning
+                  ((imageDivStart + heightText - 0.9*heightImageDiv) > scrollPosition ? 
+                    (scrollPosition - imageDivStart) * (90 / (heightText - 0.9*heightImageDiv)) //case 1: moving
+                      : 90)  //case 2: stop at the end of the text
+                  : 0}deg)`,  //case 3: beginning
+              transition: 'transform 0.001s smooth'
+            }}
+          />
+        :
+          <img 
+              ref={refImage} 
+              src={kornerpieceMatched} 
+              alt="kornerpieceMatched" 
+              className={`w-[70%] h-auto opacity-85`} 
+          />
+        }
 
       </div>
 
