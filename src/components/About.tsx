@@ -7,11 +7,9 @@ const About = () => {
   const scrollPosition = useScrollPosition();
   
   const refSection = useRef(null);
-  const sectionStart = useOffsetTop(refSection);
 
   const refImage = useRef(null);
   const refImageDiv = useRef(null);
-  const isImageVisible = useOnScreen(refImageDiv, "0px");
   const imageDivStart = useOffsetTop(refImageDiv);
   const heightImageDiv = useHeightElement(refImageDiv);
 

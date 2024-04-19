@@ -26,10 +26,10 @@ export const projects = [
     title: "Photovoltaic Power Forecasting using sky images and sun motion",
     content:
       "Published Paper in IEEE on extracting and adding physical information to improve state of the art photovoltaic power forecasting CNN models. Used Python, TensorFlow, and OpenCV.",
-    button1: "GitHub",
-    button1Link: "https://github.com/arne-be/Photovoltaic-Power-Forecasting",
-    button2: "Paper",
-    button2Link: "https://ieeexplore.ieee.org/document/10448183",
+    button1: "Paper",
+    button1Link: "https://ieeexplore.ieee.org/document/10448183",
+    button2: "GitHub",
+    button2Link: "https://github.com/arne-be/Photovoltaic-Power-Forecasting",
   },
   {
     id: "project-2",

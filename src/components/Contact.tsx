@@ -1,11 +1,10 @@
 import {useRef} from 'react'
 import styles from "../style"
 import { linkedin, twitter, github, email } from "../assets"
-import { useOnScreen, useOffsetTop } from '../hooks'
+import { useOnScreen } from '../hooks'
 
 const Contact = () => {
   const refSection = useRef(null);
-  const sectionStart = useOffsetTop(refSection);
 
   const refText = useRef(null);
   const refIcons = useRef(null);
