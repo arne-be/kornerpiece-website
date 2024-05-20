@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect} from 'react'
+import {useRef, useState, useEffect, useLayoutEffect} from 'react'
 import styles from "../style"
 import { kornerpieceMatched } from "../assets"
 import { useScrollPosition, useOnScreen, useOffsetTop, useHeightElement } from "../hooks";
@@ -10,11 +10,8 @@ const About = () => {
 
   const refImage = useRef(null);
   const refImageDiv = useRef(null);
-  const imageDivStart = useOffsetTop(refImageDiv);
-  const heightImageDiv = useHeightElement(refImageDiv);
-
+  
   const refText = useRef(null);
-  const heightText = useHeightElement(refText);
   const refHeadingOne = useRef(null);
   const isHeadingOneVisible = useOnScreen(refHeadingOne, "0px");
   const refTextOne = useRef(null);
@@ -25,23 +22,37 @@ const About = () => {
   const isTextTwoVisible = useOnScreen(refTextTwo, "0px");
 
   const [imageTransformation, setImageTransformation] = useState(true);
+  const [imageDivStart, setImageDivStart] = useState(0);
+  const [heightImageDiv, setHeightImageDiv] = useState(0);
+  const [heightText, setHeightText] = useState(0);
 
-  const checkWindowWidth = () => {
-    if (window.innerWidth >= 1060) {
-      setImageTransformation(true);
-    } else {
-      setImageTransformation(false);
+  const imageDivOffsetTop = useOffsetTop(refImageDiv);
+  const imageDivHeight = useHeightElement(refImageDiv);
+  const textHeight = useHeightElement(refText);
+
+  useLayoutEffect(() => {
+    if (refImageDiv.current && refText.current) {
+      setImageDivStart(imageDivOffsetTop);
+      setHeightImageDiv(imageDivHeight);
+      setHeightText(textHeight);
     }
-  };
+  }, [imageDivOffsetTop, imageDivHeight, textHeight]);
 
   useEffect(() => {
+    const checkWindowWidth = () => {
+      if (window.innerWidth >= 1060) {
+        setImageTransformation(true);
+      } else {
+        setImageTransformation(false);
+      }
+    };
+
     window.addEventListener('resize', checkWindowWidth);
 
     return () => {
       window.removeEventListener('resize', checkWindowWidth);
     };
   }, []);
-
 
   return (
     <section id="about" ref={refSection} className={`flex md:flex-row flex-col ${styles.flexStart} ${styles.paddingY}`}>
