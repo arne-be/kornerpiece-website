@@ -26,10 +26,15 @@ const Footer = () => {
 
         </div>
 
-        <div className={`flex flex-col items-end justify-center w-full`}>
+        <div className={`flex flex-col items-end justify-center w-full gap-2`}>
           <a href="/imprint.html">
             <p className={`font-poppins font-normal ss:text-[14px] text-[10px] leading-[23.8px]`}>
               Impressum
+            </p>
+          </a>
+          <a href="/datenschutz.html">
+            <p className={`font-poppins font-normal ss:text-[14px] text-[10px] leading-[23.8px]`}>
+              Datenschutz
             </p>
           </a>
         </div>
