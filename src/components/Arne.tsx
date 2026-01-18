@@ -27,10 +27,9 @@ const Arne = () => {
         >
           <div style={{transform: `translateY(${(sectionStart - scrollPosition) * 0.3}px)`, transition: 'transform 0.01s smooth', zIndex: 0}}>
             <h1 className="font-poppins font-light ss:text-[46px] text-[32px] text-white ss:leading-[75px] leading-[50px]">
-              I am <span className="font-semibold text-accent">Arne</span>, an <span className="font-semibold text-secondary">ML Engineer</span> <br/>
-              with a passion for <br/>
-              <span className="font-semibold text-accent">Product</span> and <br/>
-              <span className='font-semibold text-accent'>Sustainability</span>
+              I am <span className="font-semibold text-accent">Arne</span>, <br/> 
+              an <span className="font-semibold text-secondary">ML Engineer</span> with <br/>
+              a passion for <span className="font-semibold text-accent">Energy</span>
             </h1>
             </div>
         </div>
