@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect, useLayoutEffect} from 'react'
+import {useRef, useState, useEffect, useCallback} from 'react'
 import styles from "../style"
 import { kornerpieceMatched } from "../assets"
 import { useScrollPosition, useOnScreen, useOffsetTop, useHeightElement } from "../hooks";
@@ -6,37 +6,58 @@ import { useScrollPosition, useOnScreen, useOffsetTop, useHeightElement } from "
 const About = () => {
   const scrollPosition = useScrollPosition();
   
-  const refSection = useRef(null);
+  const refSection = useRef<HTMLElement>(null);
 
-  const refImage = useRef(null);
-  const refImageDiv = useRef(null);
+  const refImage = useRef<HTMLImageElement>(null);
+  const refImageDiv = useRef<HTMLDivElement>(null);
   
-  const refText = useRef(null);
-  const refHeadingOne = useRef(null);
+  const refText = useRef<HTMLDivElement>(null);
+  const refHeadingOne = useRef<HTMLHeadingElement>(null);
   const isHeadingOneVisible = useOnScreen(refHeadingOne, "0px");
-  const refTextOne = useRef(null);
+  const refTextOne = useRef<HTMLParagraphElement>(null);
   const isTextOneVisible = useOnScreen(refTextOne, "0px");
-  const refHeadingTwo = useRef(null);
+  const refHeadingTwo = useRef<HTMLHeadingElement>(null);
   const isHeadingTwoVisible = useOnScreen(refHeadingTwo, "0px");
-  const refTextTwo = useRef(null);
+  const refTextTwo = useRef<HTMLParagraphElement>(null);
   const isTextTwoVisible = useOnScreen(refTextTwo, "0px");
 
   const [imageTransformation, setImageTransformation] = useState(true);
   const [imageDivStart, setImageDivStart] = useState(0);
   const [heightImageDiv, setHeightImageDiv] = useState(0);
   const [heightText, setHeightText] = useState(0);
+  const [measurementsReady, setMeasurementsReady] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const imageDivOffsetTop = useOffsetTop(refImageDiv);
   const imageDivHeight = useHeightElement(refImageDiv);
   const textHeight = useHeightElement(refText);
 
-  useLayoutEffect(() => {
-    if (refImageDiv.current && refText.current) {
-      setImageDivStart(imageDivOffsetTop);
-      setHeightImageDiv(imageDivHeight);
-      setHeightText(textHeight);
+  // Handle image load
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    // Wait for image to load AND layout to stabilize before taking measurements
+    if (imageLoaded && imageDivOffsetTop > 0 && imageDivHeight > 0 && textHeight > 0) {
+      // Use requestAnimationFrame to wait for browser to finish painting
+      const frameId = requestAnimationFrame(() => {
+        // Take measurements directly from DOM after paint completes
+        if (refImageDiv.current && refText.current) {
+          const finalImageDivHeight = refImageDiv.current.clientHeight;
+          const finalTextHeight = refText.current.clientHeight;
+          const finalImageDivOffsetTop = refImageDiv.current.getBoundingClientRect().top + window.scrollY;
+          
+          setImageDivStart(finalImageDivOffsetTop);
+          setHeightImageDiv(finalImageDivHeight);
+          setHeightText(finalTextHeight);
+          setMeasurementsReady(true);
+        }
+      });
+      
+      return () => cancelAnimationFrame(frameId);
     }
-  }, [imageDivOffsetTop, imageDivHeight, textHeight]);
+  }, [imageLoaded, imageDivOffsetTop, imageDivHeight, textHeight]);
 
   useEffect(() => {
     const checkWindowWidth = () => {
@@ -46,6 +67,9 @@ const About = () => {
         setImageTransformation(false);
       }
     };
+
+    // Run once on mount to ensure correct initial state
+    checkWindowWidth();
 
     window.addEventListener('resize', checkWindowWidth);
 
@@ -94,7 +118,7 @@ const About = () => {
         
 
         {
-        imageTransformation ? 
+        imageTransformation && measurementsReady ? 
           <img 
             ref={refImage} 
             src={kornerpieceMatched} 
@@ -114,6 +138,7 @@ const About = () => {
                   : 0}deg)`,  //case 3: beginning
               transition: 'transform 0.001s smooth'
             }}
+            onLoad={handleImageLoad}
           />
         :
           <img 
@@ -121,6 +146,7 @@ const About = () => {
               src={kornerpieceMatched} 
               alt="kornerpieceMatched" 
               className={`w-[70%] h-auto opacity-85`} 
+              onLoad={handleImageLoad}
           />
         }
 
