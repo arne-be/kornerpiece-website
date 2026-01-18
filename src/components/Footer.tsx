@@ -29,7 +29,7 @@ const Footer = () => {
         <div className={`flex flex-col items-end justify-center w-full`}>
           <a href="/imprint.html">
             <p className={`font-poppins font-normal ss:text-[14px] text-[10px] leading-[23.8px]`}>
-              Imprint
+              Impressum
             </p>
           </a>
         </div>
