@@ -28,28 +28,32 @@ const links = [
   },
 ]
 
+export const SocialLinks = () => (
+  <div className="flex flex-wrap gap-3">
+    {links.map((link) => (
+      <a
+        key={link.label}
+        href={link.href}
+        aria-label={link.label}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-[52px] h-[52px] rounded-full border border-neutral flex items-center justify-center text-primary hover:border-secondary hover:text-secondary"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+          {link.icon}
+        </svg>
+      </a>
+    ))}
+  </div>
+)
+
 const Contact = () => {
   return (
     <section id="contact" className="py-24 border-t border-neutral flex flex-wrap gap-8 items-center justify-between">
       <h2 className="text-[36px] ss:text-[48px] md:text-[64px] font-semibold tracking-[-0.02em]">
         Get in <span className="text-secondary">touch</span>.
       </h2>
-      <div className="flex flex-wrap gap-3">
-        {links.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            aria-label={link.label}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-[52px] h-[52px] rounded-full border border-neutral flex items-center justify-center text-primary hover:border-secondary hover:text-secondary"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-              {link.icon}
-            </svg>
-          </a>
-        ))}
-      </div>
+      <SocialLinks />
     </section>
   )
 }

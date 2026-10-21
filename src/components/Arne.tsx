@@ -1,5 +1,6 @@
 import { headshot } from '../assets'
 import Puzzle from './Puzzle'
+import { SocialLinks } from './Contact'
 
 const Arne = () => {
   return (
@@ -13,7 +14,10 @@ const Arne = () => {
         />{' '}
         <span className="font-semibold">Arne</span>, a <span className="font-semibold">Software &amp; ML Engineer</span> with a passion for <span className="font-semibold text-secondary">Energy</span>.
       </h1>
-      <div className="mt-24 mb-16">
+      <div className="mt-10">
+        <SocialLinks />
+      </div>
+      <div className="mt-20 mb-16">
         <Puzzle />
       </div>
     </section>
