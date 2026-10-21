@@ -1,36 +1,25 @@
-/*import {useState, useEffect} from 'react'*/
-import styles from './style';
 import './input.css'
-import {NavBar, Arne, Projects, About, Contact, Footer} from './components';
+import {NavBar, Arne, Now, Projects, About, Contact, Footer} from './components';
 
 const App = () => {
-  /* Height of navbar set */
-  const navbarHeight = 97;
-
-  
   return (
-    <div className="relative z-10 bg-primary w-full overflow-hidden">
-      <div id="navbar" className={`fixed z-10 top-0 w-full bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
-        <div className={`${styles.boxWidth}`}>
+    <div className="font-kanit text-primary bg-paper min-h-screen w-full overflow-x-clip">
+      <header className="sticky top-0 z-10 bg-paper/90 backdrop-blur">
+        <div className="max-w-[1200px] mx-auto px-6">
           <NavBar />
         </div>
-      </div>
+      </header>
 
-      <div className={`relative z-1 bg-primary ${styles.flexStart}`} style={{ paddingTop: navbarHeight }}>
-        <div className={`${styles.boxWidth}`}>
+      <main>
+        <div className="max-w-[1200px] mx-auto px-6">
           <Arne />
-        </div>
-      </div>
-
-      <div className={`relative z-1 bg-primary ${styles.flexStart} ${styles.paddingX}`}>
-        <div className={`${styles.boxWidth}`}>
+          <Now />
           <Projects />
-          <About/>
+          <About />
           <Contact />
           <Footer />
         </div>
-      </div>
-
+      </main>
     </div>
   )
 }

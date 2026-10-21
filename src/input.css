@@ -1,172 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --black-gradient: linear-gradient(
-    144.39deg,
-    #ffffff -278.56%,
-    #6d6d6d -78.47%,
-    #11101d 91.61%
-  );
-  --card-shadow: 0px 20px 100px -10px rgba(66, 71, 91, 0.1);
-}
-
 * {
   scroll-behavior: smooth;
 }
 
-.text-gradient {
-  background: radial-gradient(
-    64.18% 64.18% at 71.16% 35.69%,
-    #def9fa 0.89%,
-    #bef3f5 17.23%,
-    #9dedf0 42.04%,
-    #7de7eb 55.12%,
-    #5ce1e6 71.54%,
-    #33bbcf 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
+html {
+  scroll-padding-top: 80px;
 }
 
-.bg-blue-gradient {
-  background: linear-gradient(
-    157.81deg,
-    #def9fa -43.27%,
-    #bef3f5 -21.24%,
-    #9dedf0 12.19%,
-    #7de7eb 29.82%,
-    #5ce1e6 51.94%,
-    #33bbcf 90.29%
-  );
+body {
+  background: #FAFAF8;
+  color: #010208;
 }
 
-.bg-black-gradient {
-  background: linear-gradient(
-    144.39deg,
-    #ffffff -278.56%,
-    #6d6d6d -78.47%,
-    #11101d 91.61%
-  );
+.scroller::-webkit-scrollbar {
+  height: 6px;
 }
 
-.bg-accent-gradient {
-  background: linear-gradient(
-    144.39deg,
-    #D15F4C -148.56%,
-    #FFAEAB -98.47%,
-    #11101d 91.61%
-  );
-}
-
-.bg-black-gradient-2 {
-  background: linear-gradient(
-    -168.39deg,
-    #ffffff -278.56%,
-    #6d6d6d -78.47%,
-    #11101d 91.61%
-  );
-}
-
-.bg-gray-gradient {
-  background: linear-gradient(
-    153.47deg,
-    rgba(255, 255, 255, 0) -341.94%,
-    #14101d 95.11%
-  );
-}
-
-.bg-discount-gradient {
-  background: linear-gradient(125.17deg, #272727 0%, #11101d 100%);
-}
-
-.box-shadow {
-  box-shadow: 0px 20px 100px -10px rgba(66, 71, 91, 0.1);
-}
-
-.sidebar {
-  -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@-webkit-keyframes slide-top {
-  0% {
-    -webkit-transform: translateY(100px);
-    transform: translateY(100px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-top {
-  0% {
-    -webkit-transform: translateY(100px);
-    transform: translateY(100px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-.feature-card:hover {
-  background: var(--black-gradient);
-  box-shadow: var(--card-shadow);
-}
-
-.feedback-container .feedback-card:last-child {
-  margin-right: 0px;
-}
-
-.feedback-card {
-  background: transparent;
-}
-
-.feedback-card:hover {
-  background: var(--black-gradient);
-}
-
-.blue__gradient {
-  background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #214d76 100%);
-  filter: blur(123px);
-}
-
-.pink__gradient {
-  background: linear-gradient(90deg, #f4c4f3 0%, #fc67fa 100%);
-  filter: blur(900px);
-}
-
-.accent__gradient {
-  background: linear-gradient(90deg, #FFD3D1 0%, #FFAEAB 100%);
-  filter: blur(900px);
-}
-
-.white__gradient {
-  background: rgba(255, 255, 255, 0.6);
-  filter: blur(750px);
-}
-
-.secondary_radial__gradient {
-  border: radial-gradient(
-    64.18% 64.18% at 71.16% 35.69%,
-    #FFD3D1 0.89%,
-    #FFAEAB 17.23%,
-    #FF8A87 42.04%,
-    #D15F4C 100%
-  );
+.scroller::-webkit-scrollbar-thumb {
+  background: #E3E4E6;
+  border-radius: 3px;
 }
 
 @keyframes fade-in-up {
   0% {
     opacity: 0;
-    transform: translateY(80px);
+    transform: translateY(40px);
   }
   100% {
     opacity: 1;
@@ -175,9 +38,52 @@
 }
 
 .animate-fade-in-up {
-  position: relative;
-  z-index: 1;
   opacity: 0;
-  transform: translateY(80px);
-  animation: fade-in-up .6s ease-in-out forwards;
+  animation: fade-in-up .6s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-in-up {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* Hero puzzle idle motion (src/components/Puzzle.tsx) */
+@keyframes puzzle-float {
+  0%, 100% {
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotateX(5deg) rotateY(-6deg);
+  }
+}
+
+/* --float is 1 while the pieces are apart and 0 once joined, so joined pieces stay aligned */
+@keyframes puzzle-bob {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translate3d(0, calc(var(--float) * -10px), calc(var(--float) * 14px)) rotateX(calc(var(--float) * 7deg)) rotateY(calc(var(--float) * -6deg));
+  }
+}
+
+.animate-puzzle-float {
+  animation: puzzle-float 7s ease-in-out infinite;
+}
+
+.animate-puzzle-bob {
+  animation: puzzle-bob 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-puzzle-float,
+  .animate-puzzle-bob {
+    animation: none;
+  }
 }
