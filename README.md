@@ -43,7 +43,6 @@ npm run preview
 │   ├── components/     # React components (NavBar, Footer, Projects, etc.)
 │   ├── assets/         # Images and static assets
 │   ├── constants/      # Constants and configuration
-│   ├── hooks/          # Custom React hooks
 │   ├── App.tsx         # Main app component
 │   └── main.tsx        # Entry point
 ├── public/             # Static files

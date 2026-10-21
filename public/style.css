@@ -1,52 +1,59 @@
+/* Impressum and Datenschutz: static pages styled to match the main site */
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap");
 
-
-.imprint a {
-    color: #fff;
+body {
+    margin: 0;
+    background: #FAFAF8;
+    color: #45464C;
+    font-family: Kanit, sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.7;
 }
 
 .layout-container {
-    padding: 10px 9rem 10px 9rem;
-    display: block;
-
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 72px 24px 96px;
 }
 
-
-/* Responsive CSS */
-
-/* For tablets and larger screens */
-@media (min-width: 768px) {
-    h1 {
-        font-size: 3.5rem;
-    }
-    .subtext {
-        font-size: 1rem;
-    }
-
-    .layout-container {
-        margin-top: 10px;
-        margin-bottom:10px;
-        padding-left: 9rem;
-        padding-right: 9rem;
-    }
-
+h1 {
+    margin: 0 0 32px;
+    color: #010208;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
-/* For smartphones and smaller screens */
+strong {
+    color: #010208;
+    font-weight: 500;
+}
+
+p {
+    margin: 0 0 24px;
+}
+
+a {
+    color: #B84A38;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #010208;
+}
+
 @media (max-width: 767px) {
-    
+    body {
+        font-size: 16px;
+    }
+
     h1 {
-        font-size: 2rem;
+        font-size: 32px;
     }
-    .subtext {
-        font-size: 0.6rem;
-    }
-    .imprint {
-        font-size: 0.4rem;
-    }
+
     .layout-container {
-        margin-top: 10px;
-        margin-bottom:10px;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-top: 48px;
     }
 }
